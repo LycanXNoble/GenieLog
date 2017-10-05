@@ -20,7 +20,7 @@ public class Orange {
 	
     public Orange (double pr, String or)
     {
-        if (pr < 0.00) throw new ArithmeticException("Negative price.");
+        if (pr < 0.0) throw new ArithmeticException("Negative price.");
         else
         {
             this.prix = pr;

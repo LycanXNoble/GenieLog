@@ -55,11 +55,11 @@ public class OrangeTest extends TestCase {
     public void testToString() {
         System.out.println("toString");
         Orange instance = new Orange();
-        String expResult = "";
+        String expResult = "\tPrix : 0.0\n\tOrigine : ";
+        System.out.println(expResult);
         String result = instance.toString();
+        System.out.println(result);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -69,7 +69,13 @@ public class OrangeTest extends TestCase {
     {
         Orange o1=new Orange(0.31,"France");
         Orange o2=new Orange(0.31,"France");
+        Orange o3=new Orange(0.5,"France");
+        Orange o4=new Orange(0.31,"Espagne");
+        Object test=new Object();
         
+        assertFalse(o1.equals(test));
+        assertFalse(o1.equals(o3));
+        assertFalse(o1.equals(o4));
         assertEquals(o1,o2);
         assertTrue(o1.equals(o2));
     }
