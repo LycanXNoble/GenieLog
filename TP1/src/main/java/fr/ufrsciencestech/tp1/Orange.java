@@ -14,7 +14,7 @@ public class Orange {
 	
     public Orange ()
     {
-        this.prix = 0.00;
+        this.prix = 0.0;
         this.origine = "";
     }
 	
