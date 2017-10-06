@@ -51,7 +51,10 @@ public class Panier
     
     public boolean estVide()
     {
-        return (List.size()==0);
+        if(this.MAX_SIZE==0)
+            return false;
+        else
+            return (List.size()==0);
     }
     
     public String toString()
@@ -67,7 +70,15 @@ public class Panier
     
     public void ajoute(Orange o)
     {
-        List.add(o);
+        if(o!=null)
+        {
+            if(this.estPlein())
+                throw new ArithmeticException("Le panier est plein");
+            else
+                List.add(o);
+        }
+        else
+            throw new ArithmeticException("Orange est Null.");
     }
     
     public void retire()
@@ -79,13 +90,16 @@ public class Panier
     public boolean equals(Object obj)
     {
         if(obj != null && (obj.getClass()==Panier.class))
+        {
             if(obj instanceof Panier)
             {
                 Panier te= (Panier)obj;
                 if(!(te.getList().equals(List))) return false;
                 if(te.MAX_SIZE!=this.MAX_SIZE)return false;
+                return true;
             }
-        return true;
+        }
+        return false;
     }
     
     public static void main(String[] args)

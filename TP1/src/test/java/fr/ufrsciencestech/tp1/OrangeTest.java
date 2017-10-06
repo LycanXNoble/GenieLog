@@ -55,11 +55,9 @@ public class OrangeTest extends TestCase {
     public void testToString() {
         System.out.println("toString");
         Orange instance = new Orange();
-        String expResult = "\tPrix : 0.0\n\tOrigine : ";
-        System.out.println(expResult);
+        String expResult = "\tPrix : "+instance.getPrix()+"\n\tOrigine : "+instance.getOrigine()+"\n";
         String result = instance.toString();
-        System.out.println(result);
-        assertEquals(expResult, result);
+        assertTrue(expResult.equals(result));
     }
 
     /**

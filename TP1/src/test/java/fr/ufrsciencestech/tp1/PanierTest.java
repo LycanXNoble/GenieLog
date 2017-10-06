@@ -34,9 +34,10 @@ public class PanierTest extends TestCase {
     public void testGetList() {
         System.out.println("getList");
         Panier instance = new Panier();
-        ArrayList<Orange> expResult = null;
+        ArrayList<Orange> expResult = new ArrayList<Orange>();
         ArrayList<Orange> result = instance.getList();
         assertEquals(expResult, result);
+        fail("finir test avec une liste d'un élément");
     }
 
     /**
@@ -55,12 +56,18 @@ public class PanierTest extends TestCase {
      */
     public void testEstPlein() {
         System.out.println("estPlein");
+        
         Panier instance = new Panier();
-        boolean expResult = false;
-        boolean result = instance.estPlein();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Panier i2 = new Panier(2);
+        Orange o=new Orange();
+        i2.ajoute(o);
+        
+        boolean expResult = true;
+        boolean result1 = instance.estPlein();
+        boolean result2 = i2.estPlein();
+        
+        assertEquals(expResult, result1);
+        assertEquals(false,result2);
     }
 
     /**
@@ -68,12 +75,18 @@ public class PanierTest extends TestCase {
      */
     public void testEstVide() {
         System.out.println("estVide");
+        Orange o = new Orange();
         Panier instance = new Panier();
-        boolean expResult = false;
+        Panier instance2 = new Panier(1);
+        
         boolean result = instance.estVide();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean result2 = instance2.estVide();
+        instance2.ajoute(o);
+        boolean result3 = instance2.estVide();
+        
+        assertEquals(false, result);
+        assertEquals(true,result2);
+        assertEquals(false,result3);
     }
 
     /**
@@ -95,10 +108,19 @@ public class PanierTest extends TestCase {
     public void testAjoute() {
         System.out.println("ajoute");
         Orange o = null;
-        Panier instance = new Panier();
-        instance.ajoute(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Orange o2 = new Orange();
+        Panier instance = new Panier(2);
+        Panier exp = new Panier(2);
+        exp.List.add(o2);
+        instance.ajoute(o2);
+        assertTrue(exp.equals(instance));
+        try{
+            instance.ajoute(o);
+            fail("Exception non déclenchée.");
+        }
+        catch(ArithmeticException e)
+        {
+        }
     }
 
     /**
@@ -107,7 +129,7 @@ public class PanierTest extends TestCase {
     public void testRetire() {
         System.out.println("retire");
         Panier instance = new Panier();
-        instance.retire();
+        //instance.retire();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -118,12 +140,21 @@ public class PanierTest extends TestCase {
     public void testEquals() {
         System.out.println("equals");
         Object obj = null;
-        Panier instance = new Panier();
-        boolean expResult = false;
+        Orange o = new Orange();
+        Panier instance = new Panier(2);
+        Panier instance2 = new Panier(2);
+        Panier instance3 = new Panier(2);
+        
+        instance.ajoute(o);
+        instance2.ajoute(o);
+        
         boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean result2 = instance.equals(instance2);
+        boolean result3 = instance.equals(instance3);
+        
+        assertEquals(false, result);
+        assertEquals(true,result2);
+        assertEquals(false,result3);
     }
     
 }
